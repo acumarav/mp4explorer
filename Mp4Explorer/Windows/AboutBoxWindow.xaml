@@ -1,0 +1,22 @@
+﻿<Window x:Class="Mp4Explorer.AboutBoxWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="About Mp4 Explorer"
+    Height="300" Width="400"
+    Icon="/Mp4Explorer;component/App.ico"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize"
+    ShowInTaskbar="False">
+    <StackPanel>
+        <Label Name="labelProductName" />
+        <Label Name="labelVersion" />
+        <Label Name="labelCopyright" />
+        <Label Name="labelCompanyName" />
+        <Label Height="30">
+            <Hyperlink NavigateUri="http://www.cmstream.net" Hyperlink.RequestNavigate="Hyperlink_RequestNavigate" >
+                <TextBlock Text="www.cmstream.net" />
+            </Hyperlink>
+        </Label>
+        <Label Name="labelDescription" />
+    </StackPanel>
+</Window>

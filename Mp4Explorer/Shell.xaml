@@ -1,0 +1,70 @@
+﻿<Window x:Class="Mp4Explorer.Shell"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cal="http://www.codeplex.com/CompositeWPF"
+    xmlns:app="clr-namespace:Mp4Explorer"
+    Title="Mp4 Explorer"
+    Height="600" Width="800"
+    Icon="/Mp4Explorer;component/App.ico"
+    WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Image x:Key="imageOpen" Source="/Mp4Explorer;component/Images/open_16.ico" Height="16" Width="16" />
+        <Image x:Key="imageSmoothStreaming" Source="/Mp4Explorer;component/Images/smooth_streaming_16.png" Height="16" Width="16" />
+        <Image x:Key="imageFov" Source="/Mp4Explorer;component/Images/fov_16.png" Height="16" Width="16" />
+        <Image x:Key="imageUploadToAzure" Source="/Mp4Explorer;component/Images/upload_to_azure_16.png" Height="16" Width="16" />
+    </Window.Resources>
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <Menu Height="22" Name="menuMain">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open" Command="{x:Static app:GlobalCommands.OpenCommand}" Icon="{StaticResource imageOpen}" />
+                    <Separator/>
+                    <MenuItem Header="Exit" Name="menuItemExit" Click="menuItemExit_Click" />
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem Name="menuItemConvertToMp4" Header="Conver video to MP4 (H264+AAC)" Click="menuItemConvertVideoToMp4_Click" IsEnabled="False" />
+                    <MenuItem Header="Smooth Streaming" Icon="{StaticResource imageSmoothStreaming}">
+                        <MenuItem Name="menuItemCreateFixedOffset" Header="Create Fixed Offset" Click="menuItemCreateFixedOffset_Click" Icon="{StaticResource imageFov}" />
+                        <MenuItem Name="menuItemUploadToAzure" Header="Upload to Azure" Click="menuItemUploadToAzure_Click" Icon="{StaticResource imageUploadToAzure}" />
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Name="menuItemAbout" Header="About Mp4 Explorer" Click="menuItemAbout_Click" />
+                </MenuItem>
+            </Menu>
+        </Border>
+        <Border DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Command="{x:Static app:GlobalCommands.OpenCommand}" >
+                    <Image Source="/Mp4Explorer;component/Images/open_16.ico" Height="16" ToolTip="Open" />
+                </Button>
+                <Separator />
+                <Button Click="menuItemCreateFixedOffset_Click">
+                    <Image Source="/Mp4Explorer;component/Images/fov_16.png" Height="16" ToolTip="Create Fixed Offset" />
+                </Button>
+                <Button Click="menuItemUploadToAzure_Click">
+                    <Image Source="/Mp4Explorer;component/Images/upload_to_azure_16.png" Height="16" ToolTip="Upload to Azure" />
+                </Button>
+            </ToolBar>
+        </Border>
+        <Border DockPanel.Dock="Bottom">
+            <StatusBar>
+                <StatusBarItem Name="statusBarItemPath" Content=" " />
+            </StatusBar>
+        </Border>
+        <Border>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ContentControl Grid.Column="0" Name="LeftRegion" cal:RegionManager.RegionName="LeftRegion" />
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" ShowsPreview="True" Width="4" />
+                <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray">
+                    <ContentControl Name="MainRegion" cal:RegionManager.RegionName="MainRegion" />
+                </Border>
+            </Grid>
+        </Border>
+    </DockPanel>
+</Window>
